@@ -3,6 +3,7 @@ const {
   generateContent,
   generateVideoScript,
 } = require("../video-generation-service/gemini_LLM"); // Adjust path to gemini_LLM
+const { generateVideo } = require("../video-generation-service/aiml_LLM"); // Adjust path to videoService
 const router = express.Router();
 
 // Route to generate content
@@ -32,7 +33,7 @@ router.post("/generate-content", async (req, res) => {
   }
 });
 
-// Route to generate content
+// Route to generate video script
 router.post("/generate-videoscript", async (req, res) => {
   const userPrompt = req.body.prompt; // Get user prompt from request body
   const additionalData = req.body.additionalData; // Get additional data from request body
@@ -56,6 +57,33 @@ router.post("/generate-videoscript", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to generate content.",
+      error: error.message,
+    });
+  }
+});
+
+// Route to generate video
+router.post("/generate-video", async (req, res) => {
+  const { prompt, ratio, imageUrl } = req.body;
+
+  if (!prompt || !ratio) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Prompt and ratio are required." });
+  }
+
+  try {
+    const videoResponse = await generateVideo(prompt, ratio, imageUrl); // Call the video generation service
+    res.json({
+      success: true,
+      message: "Video generated successfully!",
+      data: videoResponse, // Include the video generation response
+    });
+  } catch (error) {
+    console.error("Error generating video:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to generate video.",
       error: error.message,
     });
   }
