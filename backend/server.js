@@ -6,6 +6,7 @@ require("dotenv").config(); // Load environment variables
 // Import routes
 const generateContentRoute = require("./routes/generate_prompt"); // Route for generating content
 const analyzeVideoRoute = require("./routes/analyze_video"); // Route for analyzing video content
+const generateAvatar = require("./routes/generate_avatar")
 
 // Initialize the Express app
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true })); // To support URL-encoded bodie
 // Use the generate content route
 app.use("/api", generateContentRoute); // Mount the prompt generation route
 app.use("/api/analyze-video", analyzeVideoRoute); // Mount the video analysis route
+app.use("/avatar", generateAvatar);
 
 // Start the server
 app.listen(PORT, () => {
