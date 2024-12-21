@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sparkles, Image } from "lucide-react";
 import { toast } from "react-toastify";
+import sentosa_video from "../assets/sentosa_video.mp4";
 
 const GuidedContentCreation = () => {
   const [step, setStep] = useState(1);
@@ -12,6 +13,7 @@ const GuidedContentCreation = () => {
     visuals: null,
   });
   const [loading, setLoading] = useState(false); // Loading state
+  const [videoUrl, setVideoUrl] = useState("../assets/sentosa_video.mp4");
   const navigate = useNavigate();
 
   const handleNext = () => {
@@ -31,7 +33,7 @@ const GuidedContentCreation = () => {
       }
       setStep(step + 1);
     } else {
-      // Final step: simulate video generation and navigate to result
+      // Final step: log data and navigate to result
       console.log("Final data:", data);
       navigate("/results");
     }
@@ -43,11 +45,13 @@ const GuidedContentCreation = () => {
 
   const generatePrompt = () => {
     const newPrompt =
-      "Based on your user data and preferences, create a relaxing beach video enjoying some pokebowl";
-    setData({ ...data, prompt: newPrompt });
-    toast.success(
-      "The AI has generated this prompt based on your preferences!"
-    );
+      "Create a 10-second Instagram reel that captures my recent experience of eating a delicious poké bowl at Sentosa, Singapore.";
+    setTimeout(() => {
+      setData({ ...data, prompt: newPrompt });
+      toast.success(
+        "The AI has generated this prompt based on your recent activities and preferences."
+      );
+    }, 1000);
   };
 
   const generateScript = async () => {
@@ -55,16 +59,13 @@ const GuidedContentCreation = () => {
       toast.error("Please provide both a prompt and a theme.");
       return;
     }
-
     // Show loading notification
     setLoading(true);
     toast.info("Generating script...");
-
     const requestBody = {
       prompt: data.prompt,
       additionalData: `The Theme is ` + data.theme,
     };
-
     try {
       const response = await fetch(
         "http://localhost:5000/api/generate-videoscript",
@@ -74,25 +75,22 @@ const GuidedContentCreation = () => {
           body: JSON.stringify(requestBody),
         }
       );
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
       const result = await response.json();
-
       // Check for success and extract the script
       if (result.success) {
-        setData({ ...data, script: result.data }); // Use result.data for the script
-        toast.success("AI has generated your script!"); // Success notification
+        setData({ ...data, script: result.data });
+        toast.success("AI has generated your script!");
       } else {
         toast.error(
           result.message || "Failed to generate script. Please try again."
-        ); // Error notification
+        );
       }
     } catch (error) {
       console.error("Error generating script:", error);
-      toast.error("Failed to generate script. Please try again."); // Error notification
+      toast.error("Failed to generate script. Please try again.");
     } finally {
       setLoading(false); // Reset loading state
     }
@@ -111,19 +109,18 @@ const GuidedContentCreation = () => {
                   step === index + 1 ? "text-yellow-400" : "text-gray-400"
                 }`}
               >
-                <span className="mr-2">{index + 1}</span> <span>{label}</span>
+                <span className="mr-2">{index + 1}</span>
+                <span>{label}</span>
               </div>
             )
           )}
         </div>
-
         <div className="h-2 bg-gray-700 rounded-full">
           <div
             className="h-full bg-yellow-500 rounded-full transition-all duration-300"
             style={{ width: `${((step - 1) / 4) * 100}%` }}
           />
         </div>
-
         {/* Step Content */}
         <div className="max-w-4xl mx-auto bg-gray-800/50 p-8 rounded-lg backdrop-blur-lg">
           {step === 1 && (
@@ -147,7 +144,6 @@ const GuidedContentCreation = () => {
               </button>
             </div>
           )}
-
           {step === 2 && (
             <div className="space-y-6">
               <h2 className="text-3xl font-bold mb-4">
@@ -173,7 +169,6 @@ const GuidedContentCreation = () => {
               </div>
             </div>
           )}
-
           {step === 3 && (
             <div className="space-y-6">
               <h2 className="text-3xl font-bold mb-4">
@@ -192,11 +187,10 @@ const GuidedContentCreation = () => {
                 disabled={loading}
               >
                 {" "}
-                {/* Disable button while loading */} Use AI to Generate a Script{" "}
+                Use AI to Generate a Script{" "}
               </button>
             </div>
           )}
-
           {step === 4 && (
             <div className="space-y-6">
               <h2 className="text-3xl font-bold mb-4">
@@ -237,7 +231,6 @@ const GuidedContentCreation = () => {
               </div>
             </div>
           )}
-
           {step === 5 && (
             <div className="space-y-6">
               <h2 className="text-3xl font-bold mb-4">
@@ -249,6 +242,15 @@ const GuidedContentCreation = () => {
                 Add transitions, effects, and fine-tune your creation using our
                 editing tools!{" "}
               </p>
+              {/* Video Frame */}
+              {videoUrl && (
+                <div className="flex justify-center">
+                  <video width="750" height="500" controls>
+                    <source src={sentosa_video} type="video/mp4" />
+                  </video>
+                </div>
+              )}
+              {/* Button to launch editing tools */}
               <button
                 className="px-6 py-2 bg-green-500 rounded-lg hover:bg-green-600"
                 onClick={() => alert("Editing tools launched!")}
@@ -258,7 +260,6 @@ const GuidedContentCreation = () => {
               </button>
             </div>
           )}
-
           {/* Navigation Buttons */}
           <div className="mt-8 flex justify-between">
             {step > 1 && (
@@ -270,13 +271,11 @@ const GuidedContentCreation = () => {
                 Back{" "}
               </button>
             )}
-
             <button
               className="px-6 py-2 bg-yellow-500 rounded-lg hover:bg-yellow-600"
               onClick={handleNext}
             >
-              {" "}
-              {step === 5 ? "Finish" : "Next"}{" "}
+              {step === 4 ? "Generate" : step === 5 ? "Finish" : "Next"}
             </button>
           </div>
         </div>
