@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sparkles, Image } from "lucide-react";
 import { toast } from "react-toastify";
-import sentosa_video from "../assets/sentosa_video.mp4";
+import sentosa_video from "../Assets/sentosa_video.mp4";
 
 const GuidedContentCreation = () => {
   const [step, setStep] = useState(1);
