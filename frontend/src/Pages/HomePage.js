@@ -1,25 +1,26 @@
-import { ArrowRight, Sparkles, Zap, Image } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, Sparkles, Zap, Image } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const features = [
     {
       icon: <Sparkles className="h-6 w-6 text-yellow-400" />,
-      title: 'Getting Started',
-      description: 'Jumpstart your content creation journey with ease.',
-      link: '/get-started',
+      title: "Getting Started",
+      description: "Jumpstart your content creation journey with ease.",
+      link: "/get-started",
     },
     {
       icon: <Image className="h-6 w-6 text-pink-400" />,
-      title: 'Guided Content Creation',
-      description: 'Let AI guide you in creating captivating social media posts.',
-      link: '/guided-creation',
+      title: "Guided Content Creation",
+      description:
+        "Let AI guide you in creating captivating social media posts.",
+      link: "/guided-creation", // Ensure this links to GuidedContentCreation
     },
     {
       icon: <Zap className="h-6 w-6 text-green-400" />,
-      title: 'Content Transformer',
-      description: 'Transform raw ideas into polished content effortlessly.',
-      link: '/content-transformer',
+      title: "Content Transformer",
+      description: "Transform raw ideas into polished content effortlessly.",
+      link: "/content-transformer",
     },
   ];
 
@@ -28,9 +29,7 @@ const Home = () => {
       {/* Navbar */}
       <div className="py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-extrabold text-yellow-400">
-            Trendz
-          </h1>
+          <h1 className="text-5xl font-extrabold text-yellow-400">Trendz</h1>
         </div>
       </div>
 
@@ -41,9 +40,11 @@ const Home = () => {
             Unlock Your Creativity with AI
           </h1>
           <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Seamlessly create, transform, and share engaging content with our AI-powered tools. Whether you're a beginner or a pro, we've got you covered.
+            Seamlessly create, transform, and share engaging content with our
+            AI-powered tools. Whether you're a beginner or a pro, we've got you
+            covered.
           </p>
-          <Link 
+          <Link
             to="/get-started"
             className="inline-flex items-center px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-black font-medium rounded-full transition-transform transform hover:scale-105 shadow-lg"
           >
@@ -69,9 +70,7 @@ const Home = () => {
                 <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-300 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-gray-200">
-                  {feature.description}
-                </p>
+                <p className="text-gray-200">{feature.description}</p>
               </Link>
             ))}
           </div>

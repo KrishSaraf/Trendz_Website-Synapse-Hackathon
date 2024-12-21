@@ -1,6 +1,7 @@
 // Import required packages
 const express = require("express");
 const path = require("path");
+const cors = require("cors"); // Import the cors package
 require("dotenv").config(); // Load environment variables
 
 // Import routes
@@ -11,6 +12,15 @@ const analyzeVideoRoute = require("./routes/analyze_video"); // Route for analyz
 // Initialize the Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Middleware to enable CORS
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Allow requests from this origin
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Specify allowed methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Specify allowed headers
+  })
+);
 
 // Middleware to parse JSON requests
 app.use(express.json());
