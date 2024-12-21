@@ -3,6 +3,8 @@ import Home from "./Pages/HomePage";
 import GetStarted from "./Pages/GettingStarted";
 import GuidedContentCreation from "./Pages/GuidedContentCreation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/guided-creation" element={<GuidedContentCreation />} />
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }
