@@ -7,6 +7,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AvatarPage from "./Pages/Avatar";
 import VideoEditor from "./Pages/VideoEditor";
+import ContentTransformation from "./Pages/ContentTransformation";
+import AnalysisPage from "./Pages/Analysis";
+import ScriptPage from "./Pages/ScriptPage";
+import ResultPage from "./Pages/Result";
+import FileUploadPage from "./Pages/FileUpload";
 
 function App() {
   return (
@@ -17,6 +22,11 @@ function App() {
         <Route path="/guided-creation" element={<GuidedContentCreation />} />
         <Route path="/Avatar" element={<AvatarPage />} />
         <Route path="/video-editor" element={<VideoEditor />} />
+        <Route path="/content-transformer" element={<ContentTransformation />} />
+        <Route path="/file-upload" element={<FileUploadPage />} />
+        <Route path="/analysis" element={<AnalysisPage />} />
+        <Route path="/script" element={<ScriptPage />} />
+        <Route path="/result" element={<ResultPage />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>
