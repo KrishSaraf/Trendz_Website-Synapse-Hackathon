@@ -1,7 +1,28 @@
-import { ArrowRight, Sparkles, Zap, Image, Scissors } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowRight,
+  Sparkles,
+  Zap,
+  Image,
+  Scissors,
+  ChevronDown,
+  BookOpen,
+  Users,
+  Video,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => setIsDropdownOpen(false), 5000); // Add a slight delay to avoid premature closing
+  };
+
   const features = [
     {
       icon: <Sparkles className="h-6 w-6 text-yellow-400" />,
@@ -14,7 +35,7 @@ const Home = () => {
       title: "Guided Content Creation",
       description:
         "Let AI guide you in creating captivating social media posts.",
-      link: "/guided-creation", // Ensure this links to GuidedContentCreation
+      link: "/guided-creation",
     },
     {
       icon: <Zap className="h-6 w-6 text-green-400" />,
@@ -30,17 +51,69 @@ const Home = () => {
     },
   ];
 
+  const dropdownItems = [
+    {
+      label: "Academy",
+      icon: <BookOpen className="h-5 w-5" />,
+      link: "/academy",
+    },
+    {
+      label: "Community",
+      icon: <Users className="h-5 w-5" />,
+      link: "/community",
+    },
+    {
+      label: "Tutorials",
+      icon: <Video className="h-5 w-5" />,
+      link: "/tutorials",
+    },
+  ];
+
   return (
-    <div className="pt-20 bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-900 min-h-screen text-white">
+    <div className="bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-900 min-h-screen text-white">
       {/* Navbar */}
-      <div className="py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="fixed top-0 left-0 w-full bg-gray-900 shadow-md z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
           <h1 className="text-5xl font-extrabold text-yellow-400">Trendz</h1>
+          <div className="flex items-center space-x-6">
+            <Link
+              to="/"
+              className="text-white hover:text-yellow-400 transition-colors"
+            >
+              Home
+            </Link>
+
+            {/* Dropdown Menu */}
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button className="flex items-center text-white hover:text-yellow-400 transition-colors">
+                Resources
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+              {isDropdownOpen && (
+                <div className="absolute top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg text-white z-10">
+                  {dropdownItems.map((item, index) => (
+                    <Link
+                      key={index}
+                      to={item.link}
+                      className="flex items-center px-4 py-2 hover:bg-gray-700 transition-colors"
+                    >
+                      {item.icon}
+                      <span className="ml-2">{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="pt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
           <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-500 bg-clip-text text-transparent mb-6">
             Unlock Your Creativity with AI
