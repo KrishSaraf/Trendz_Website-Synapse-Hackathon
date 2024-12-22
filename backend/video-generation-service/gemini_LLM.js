@@ -101,7 +101,10 @@ async function analyzeVideo(videoFilePath, additionalData) {
 // Define a function to generate content using the model
 async function generateContent(prompt) {
   try {
-    const result = await model_flash.generateContent(prompt);
+    const result = await model_flash.generateContent(
+      prompt +
+        "Please do not give me in Markdown Language, just simple text will do"
+    ); // Generate content
     return result.response.text(); // Return generated content
   } catch (error) {
     throw new Error("Error generating content: " + error.message);

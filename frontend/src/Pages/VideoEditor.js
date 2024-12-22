@@ -72,8 +72,34 @@ const VideoEditor = () => {
     }
   };
 
-  const handleChatSubmit = () => {
-    setChatResponse(`AI Response: "${chatInput}"`);
+  const handleChatSubmit = async () => {
+    if (!chatInput.trim()) {
+      alert("Please enter a prompt before sending.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/generate-content",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: chatInput }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to fetch AI response.");
+
+      const data = await response.json();
+      if (data.success) {
+        setChatResponse(data.data || "No detailed response received.");
+      } else {
+        setChatResponse(data.message || "Unexpected response format.");
+      }
+    } catch (error) {
+      console.error("Error fetching AI response:", error);
+      setChatResponse("Error fetching response. Please try again.");
+    }
   };
 
   return (
@@ -83,9 +109,7 @@ const VideoEditor = () => {
         <div className="col-span-1 bg-gray-800/50 rounded-lg p-6 backdrop-blur-lg">
           <h2 className="text-xl font-bold mb-4">Script</h2>
           <ul className="space-y-4">
-            <li className="bg-gray-900 p-3 rounded-lg">Scene 1: Intro</li>
-            <li className="bg-gray-900 p-3 rounded-lg">Scene 2: Content</li>
-            <li className="bg-gray-900 p-3 rounded-lg">Scene 3: Outro</li>
+            <li className="bg-gray-900 p-3 rounded-lg">[SCRIPT PLACEHOLDER]</li>
           </ul>
         </div>
 
