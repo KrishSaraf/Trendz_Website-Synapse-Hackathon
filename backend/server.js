@@ -7,7 +7,7 @@ require("dotenv").config(); // Load environment variables
 // Import routes
 const generateContentRoute = require("./routes/generate_prompt"); // Route for generating content
 const analyzeVideoRoute = require("./routes/analyze_video"); // Route for analyzing video content
-// const generateAvatar = require("./routes/generate_avatar");
+const trimVideoRoute = require("./routes/trim_video"); // Route for trimming videos
 
 // Initialize the Express app
 const app = express();
@@ -28,10 +28,10 @@ app.use(express.json());
 // Middleware to handle file uploads (for multipart/form-data)
 app.use(express.urlencoded({ extended: true })); // To support URL-encoded bodies
 
-// Use the generate content route
+// Mount routes
 app.use("/api", generateContentRoute); // Mount the prompt generation route
 app.use("/api/analyze-video", analyzeVideoRoute); // Mount the video analysis route
-// app.use("/avatar", generateAvatar);
+app.use("/api/trim-video", trimVideoRoute); // Mount the video trimming route
 
 // Start the server
 app.listen(PORT, () => {

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import "./VideoEditor.css";
 import { Scissors } from "lucide-react";
 import sentosaVideo from "../Assets/sentosa_video.mp4"; // Import the local video file
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const VideoEditor = () => {
   const [videoUrl, setVideoUrl] = useState(sentosaVideo); // Use the imported video as the default URL
@@ -22,8 +24,15 @@ const VideoEditor = () => {
   }, [videoRef.current?.duration]);
 
   const handleVideoLoaded = () => {
-    setDuration(videoRef.current.duration);
-    setEndTime(videoRef.current.duration);
+    if (videoRef.current) {
+      const newDuration = videoRef.current.duration;
+
+      setDuration(newDuration);
+      setStartTime(0); // Reset start time to 0
+      setEndTime(newDuration); // Set end time to the new duration
+
+      toast.success("Video loaded successfully!");
+    }
   };
 
   const handleMouseDown = (type) => {
@@ -69,12 +78,15 @@ const VideoEditor = () => {
     const file = event.target.files[0];
     if (file) {
       setMusicUrl(URL.createObjectURL(file));
+      toast.success("Music uploaded successfully!");
+    } else {
+      toast.error("No file selected for upload.");
     }
   };
 
   const handleChatSubmit = async () => {
     if (!chatInput.trim()) {
-      alert("Please enter a prompt before sending.");
+      toast.error("Please enter a prompt before sending.");
       return;
     }
 
@@ -93,12 +105,50 @@ const VideoEditor = () => {
       const data = await response.json();
       if (data.success) {
         setChatResponse(data.data || "No detailed response received.");
+        toast.success("AI response generated successfully!");
       } else {
         setChatResponse(data.message || "Unexpected response format.");
+        toast.warning("Unexpected response received.");
       }
     } catch (error) {
       console.error("Error fetching AI response:", error);
       setChatResponse("Error fetching response. Please try again.");
+      toast.error("Error generating AI response.");
+    }
+  };
+
+  const handleTrimVideo = async () => {
+    try {
+      const videoFile = await fetch(videoUrl).then((res) => res.blob());
+      const formData = new FormData();
+      formData.append("video", videoFile);
+      formData.append("startTime", startTime);
+      formData.append("endTime", endTime);
+
+      const response = await fetch("http://localhost:5000/api/trim-video", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to trim video");
+      }
+
+      const trimmedVideoBlob = await response.blob();
+      const trimmedVideoURL = URL.createObjectURL(trimmedVideoBlob);
+      setVideoUrl(trimmedVideoURL); // Update video URL
+
+      toast.success("Video trimmed successfully!");
+
+      // Trigger metadata reload by resetting the video element
+      if (videoRef.current) {
+        videoRef.current.load(); // Reload video element
+      }
+    } catch (error) {
+      console.error("Error trimming video:", error);
+      toast.error("Error trimming video. Please try again.", {
+        autoClose: 5000,
+      });
     }
   };
 
@@ -166,8 +216,9 @@ const VideoEditor = () => {
               ></div>
               {/* Scissors Icon */}
               <Scissors
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white"
+                className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white cursor-pointer"
                 size={24}
+                onClick={handleTrimVideo} // Trigger trim function on click
               />
             </div>
             <div className="flex justify-between mt-4 text-sm">
@@ -225,6 +276,7 @@ const VideoEditor = () => {
           )}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
