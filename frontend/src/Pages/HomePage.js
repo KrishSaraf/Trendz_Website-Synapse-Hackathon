@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Zap, Image } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Image, Scissors } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -21,6 +21,12 @@ const Home = () => {
       title: "Content Transformer",
       description: "Transform raw ideas into polished content effortlessly.",
       link: "/content-transformer",
+    },
+    {
+      icon: <Scissors className="h-6 w-6 text-green-400" />,
+      title: "Video Editor",
+      description: "Edit and enhance your videos with the snap of a finger.",
+      link: "/video-editor",
     },
   ];
 

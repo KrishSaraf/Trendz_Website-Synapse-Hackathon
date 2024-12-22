@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AvatarPage from "./Pages/Avatar";
+import VideoEditor from "./Pages/VideoEditor";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/guided-creation" element={<GuidedContentCreation />} />
         <Route path="/Avatar" element={<AvatarPage />} />
+        <Route path="/video-editor" element={<VideoEditor />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

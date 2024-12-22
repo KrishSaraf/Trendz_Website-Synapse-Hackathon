@@ -13,7 +13,7 @@ const GuidedContentCreation = () => {
     visuals: null,
   });
   const [loading, setLoading] = useState(false); // Loading state
-  const [videoUrl, setVideoUrl] = useState("../assets/sentosa_video.mp4");
+  const [videoUrl, setVideoUrl] = useState("../Assets/sentosa_video.mp4");
   const navigate = useNavigate();
 
   const handleNext = () => {
