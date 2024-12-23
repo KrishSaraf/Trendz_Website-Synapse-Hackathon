@@ -1,34 +1,34 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Camera, Sparkles } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Camera, Sparkles } from "lucide-react";
 
 const GetStarted = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    style: '',
-    prompt: '',
+    name: "",
+    style: "",
+    prompt: "",
     profilePicture: null,
   });
 
   const handleNext = () => {
     if (!formData.name) {
-      alert('Please enter your name.');
+      alert("Please enter your name.");
       return;
     }
 
     if (!formData.prompt) {
-      alert('Please enter a prompt.');
+      alert("Please enter a prompt.");
       return;
     }
 
     if (!formData.style) {
-      alert('Please select a content style.');
+      alert("Please select a content style.");
       return;
     }
 
-    console.log('Sending data to backend:', formData);
-    navigate('/Avatar'); // Navigate to the Avatar page
+    console.log("Sending data to backend:", formData);
+    navigate("/Avatar"); // Navigate to the Avatar page
   };
 
   const handleImageUpload = (event) => {
@@ -54,7 +54,7 @@ const GetStarted = () => {
           <div className="h-2 bg-gray-700 rounded-full">
             <div
               className="h-full bg-blue-500 rounded-full transition-all duration-300"
-              style={{ width: '100%' }}
+              style={{ width: "100%" }}
             />
           </div>
         </div>
@@ -71,13 +71,17 @@ const GetStarted = () => {
                 placeholder="Enter your name"
                 className="w-full px-4 py-2 bg-gray-900 rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
               />
             </div>
 
             {/* Profile Picture Upload */}
             <div>
-              <label className="block text-sm font-medium mb-2">Profile Picture</label>
+              <label className="block text-sm font-medium mb-2">
+                Profile Picture
+              </label>
               <div className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-700 rounded-lg hover:border-blue-500 transition-colors">
                 {formData.profilePicture ? (
                   <img
@@ -108,33 +112,41 @@ const GetStarted = () => {
 
             {/* Prompt Field */}
             <div>
-              <label className="block text-sm font-medium mb-2">Prompt</label>
+              <label className="block text-sm font-medium mb-2">
+                What kind of creator are you?
+              </label>
               <textarea
                 placeholder="Describe the content you want to create..."
                 className="w-full px-4 py-2 bg-gray-900 rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 value={formData.prompt}
-                onChange={(e) => setFormData({ ...formData, prompt: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, prompt: e.target.value })
+                }
                 rows="4"
               ></textarea>
             </div>
 
             {/* Content Style */}
             <div>
-              <h2 className="text-xl font-semibold mb-4">Select your content style</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                Select your content style
+              </h2>
               <div className="grid grid-cols-2 gap-4">
-                {["Minimalist", "Vibrant", "Professional", "Casual"].map((style) => (
-                  <button
-                    key={style}
-                    className={`p-4 rounded-lg border ${
-                      formData.style === style
-                        ? 'border-blue-500 bg-blue-500/10'
-                        : 'border-gray-700 hover:border-blue-500'
-                    }`}
-                    onClick={() => setFormData({ ...formData, style })}
-                  >
-                    {style}
-                  </button>
-                ))}
+                {["Minimalist", "Vibrant", "Professional", "Casual"].map(
+                  (style) => (
+                    <button
+                      key={style}
+                      className={`p-4 rounded-lg border ${
+                        formData.style === style
+                          ? "border-blue-500 bg-blue-500/10"
+                          : "border-gray-700 hover:border-blue-500"
+                      }`}
+                      onClick={() => setFormData({ ...formData, style })}
+                    >
+                      {style}
+                    </button>
+                  )
+                )}
               </div>
             </div>
           </div>

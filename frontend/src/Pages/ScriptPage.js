@@ -51,12 +51,15 @@ const ScriptPage = () => {
           <div className="space-y-6">
             {/* Hook */}
             <div>
-              <h3 className="text-2xl font-bold mb-2">1. Hook (First 3 Seconds)</h3>
+              <h3 className="text-2xl font-bold mb-2">
+                1. Hook (First 3 Seconds)
+              </h3>
               <p className="text-gray-200 mb-2">
                 <strong>Timestamp:</strong> 0:00 - 0:03 (Video 3)
               </p>
+
               <ul className="list-disc pl-6 space-y-2">
-                <li>Dramatic shot of Bungee Jumping.</li>
+                <li>Dramatic shot of Bungee Jumping. (0:02 - 0:05 Video 3)</li>
                 <li>Suggestion: Add sound effect.</li>
                 <li>Clip ends abruptly to catch attention.</li>
               </ul>
@@ -64,34 +67,56 @@ const ScriptPage = () => {
 
             {/* Section 1: Travelling */}
             <div>
-              <h3 className="text-2xl font-bold mb-2">2. Section 1: Travelling</h3>
+              <h3 className="text-2xl font-bold mb-2">
+                2. Section 1: Travelling
+              </h3>
               <p className="text-gray-200 mb-2">
-                <strong>Timestamp:</strong> 0:04 - 0:11
+                <strong>Timestamp:</strong> 0:04 - 0:11 (Video 2)
               </p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>A scenic shot of traveling across a bridge, with water on both sides.</li>
                 <li>
-                  The narrator introduces himself and his friends on a bus, capturing the cozy
-                  atmosphere as rain gently taps against the bus windows.
+                  A scenic shot of traveling across a bridge, with water on both
+                  sides. (0:00 - 0:02 Video 4)
                 </li>
                 <li>
-                  A panoramic view of the Kuala Lumpur skyline with the Patronas Tower, likely
-                  filmed from their hotel room.
+                  The narrator introduces himself and his friends on a bus,
+                  capturing the cozy atmosphere as rain gently taps against the
+                  bus windows. (0:05 - 0:08 Video 7)
+                </li>
+                <li>
+                  A panoramic view of the Kuala Lumpur skyline with the Patronas
+                  Tower, likely filmed from their hotel room. (0:01 - 0:03 Video
+                  5)
                 </li>
               </ul>
             </div>
-
             {/* Section 3: Batu Caves */}
             <div>
-              <h3 className="text-2xl font-bold mb-2">3. Section 3: Batu Caves</h3>
+              <h3 className="text-2xl font-bold mb-2">
+                3. Section 3: Batu Caves
+              </h3>
               <p className="text-gray-200 mb-2">
-                <strong>Timestamp:</strong> 0:12 - 0:21
+                <strong>Timestamp:</strong> 0:12 - 0:21 (Video 5)
               </p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Smooth transition to Batu Caves showcasing colorful steps and vibrant surroundings.</li>
-                <li>View from bottom of stairs looking above to the hundreds of stairs yet to climb.</li>
-                <li>View from the top of the stairs after climbing.</li>
-                <li>View inside the Batu Caves at the top.</li>
+                <li>
+                  Smooth transition to Batu Caves showcasing colorful steps and
+                  vibrant surroundings. (0:05 - 0:07 Video 2)
+                </li>
+                <li>
+                  View from Bottom of Stairs looking above to the hundreds of
+                  stairs yet to climb (0:00 - 0:01 Video 6)
+                </li>
+                <li>
+                  View from top of the stairs after climbing the stairs (0:02 -
+                  0:03 Video 6)
+                </li>
+                <li>
+                  View of Inside the Batu Caves at the top (0:06 - 0:08 Video 6)
+                </li>
+                <li>
+                  Transition to Patronas Tower in Daytime. (0:04 - 0:08 Video 1)
+                </li>
               </ul>
             </div>
           </div>
@@ -101,17 +126,20 @@ const ScriptPage = () => {
             <h3 className="text-2xl font-bold mb-2">Extra Suggestions</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>
-                <strong>Music Pairing:</strong> Use a trending upbeat track for Instagram Reels to
-                keep the audience hooked.
+                <strong>Music Pairing:</strong> Use a trending upbeat track for
+                Instagram Reels to keep the audience hooked.
                 <br />
-                <span className="text-gray-300">Example: Pumped Up Kicks by Foster the People.</span>
+                <span className="text-gray-300">
+                  Example: Pumped Up Kicks by Foster the People.
+                </span>
               </li>
               <li>
-                <strong>Transitions:</strong> Incorporate smooth zoom-ins and fade-outs for a polished
-                look.
+                <strong>Transitions:</strong> Incorporate smooth zoom-ins and
+                fade-outs for a polished look.
               </li>
               <li>
-                <strong>Captions:</strong> Highlight the key locations (Petronas Towers, Batu Caves).
+                <strong>Captions:</strong> Highlight the key locations (Petronas
+                Towers, Batu Caves).
               </li>
             </ul>
           </div>

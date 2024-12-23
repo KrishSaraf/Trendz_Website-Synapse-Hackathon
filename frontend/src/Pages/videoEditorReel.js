@@ -19,9 +19,10 @@ const VideoEditor = () => {
   const [showTools, setShowTools] = useState(false);
   const videoRef = useRef(null);
 
-  const location = useLocation();
-  const { script } = location.state || { script: "" }; // Default to empty string if no state
-
+  const { script } = {
+    script:
+      "Reel Structure 1. Hook (First 3 Seconds) Timestamp: 0:00 - 0:03  (Video 3) Content: Dramatic shot of Bungee Jumping. (0:02 - 0:05 Video 3) Suggestion: Add Sound Effect Clip Ends abruptly to catch attention 2. Section 1: Travelling Timestamp: 0:04 - 0:11 Content: Clip 1: A scenic shot of traveling across a bridge, with water on both sides. (0:00 - 0:02 Video 4) Clip 2: The narrator introduces himself and his friends on a bus, capturing the cozy atmosphere as rain gently taps against the bus windows. (0:05 - 0:08 Video 7) Clip 3: A panoramic view of the Kuala Lumpur skyline with the Patronas Tower, likely filmed from their hotel room. (0:01 - 0:03 Video 5) 3. Section 3: Batu Caves Timestamp: 0:12 - 0:21 Content: Smooth transition to Batu Caves  showcasing colorful steps and vibrant surroundings. (0:05 - 0:07 Video 2) View from Bottom of Stairs looking above to the hundreds of stairs yet to climb (0:00 - 0:01 Video 6) View from top of the stairs after climbing the stairs (0:02 - 0:03 Video 6) View of Inside the Batu Caves at the top (0:06 - 0:08 Video 6) Transition to Patronas Tower in Daytime. (0:04 - 0:08 Video 1) Extra Suggestions Music Pairing: Use a trending upbeat track for Instagram Reels to keep the audience hooked. Example: Pumped Up Kicks by Foster the People Transitions: Incorporate smooth zoom-ins and fade-outs for a polished look. Captions: Highlight the key locations (Petronas Towers, Batu Caves). ",
+  }; // Default to empty string if no state
   useEffect(() => {
     if (videoRef.current) {
       setEndTime(videoRef.current.duration || 0);
@@ -91,7 +92,7 @@ const VideoEditor = () => {
 
   const handleChatSubmit = async () => {
     const video_prompt =
-      "Right now pretend you are a video analyzer giving me advice on how to edit my video, this video is a ten second instagram reel showing me enjoying  a poke bowl at sentosa beach, try your best to answer to my question. Also, give me time stamps from 0 - 2 seconds and etc. My question:" +
+      "Right now pretend you are a video analyzer giving me advice on how to edit my video, this video is a 25 second instagram reel showing me with my 4 friends going to KL and having random activities like bungee jumping. Also, give me time stamps from 0 - 2 seconds and etc. My question:" +
       chatInput +
       "This the video script " +
       script;
@@ -188,7 +189,7 @@ const VideoEditor = () => {
               <div className="flex justify-center">
                 <video
                   ref={videoRef}
-                  width= "25%"
+                  width="25%"
                   controls
                   onLoadedMetadata={handleVideoLoaded}
                 >
