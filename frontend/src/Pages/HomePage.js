@@ -25,12 +25,6 @@ const Home = () => {
 
   const features = [
     {
-      icon: <Sparkles className="h-6 w-6 text-yellow-400" />,
-      title: "Getting Started",
-      description: "Jumpstart your content creation journey with ease.",
-      link: "/get-started",
-    },
-    {
       icon: <Image className="h-6 w-6 text-pink-400" />,
       title: "Guided Content Creation",
       description:
@@ -56,11 +50,6 @@ const Home = () => {
       label: "Academy",
       icon: <BookOpen className="h-5 w-5" />,
       link: "/academy",
-    },
-    {
-      label: "Community",
-      icon: <Users className="h-5 w-5" />,
-      link: "/community",
     },
     {
       label: "Tutorials",

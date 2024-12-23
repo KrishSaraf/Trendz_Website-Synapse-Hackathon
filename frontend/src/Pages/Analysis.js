@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AnalysisPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const prompt = location.state?.prompt || 'No prompt provided';
+  const prompt = location.state?.prompt || "No prompt provided";
 
   useEffect(() => {
     const analysisSteps = [
-      'Analyzing your video...',
-      'Extracting key moments...',
-      'Generating a reel structure...',
-      'Suggestions for improvements...',
-      'Finalizing the analysis...',
+      "Analyzing your video...",
+      "Extracting key moments...",
+      "Generating a reel structure...",
+      "Suggestions for improvements...",
+      "Finalizing the analysis...",
     ];
 
     let index = 0;
@@ -31,7 +31,7 @@ const AnalysisPage = () => {
   }, []);
 
   const handleNext = () => {
-    navigate('/script', { state: { prompt } });
+    navigate("/script", { state: { prompt } });
   };
 
   return (
@@ -39,9 +39,13 @@ const AnalysisPage = () => {
       <h1 className="text-4xl font-bold mb-6">Analyzing Your Content</h1>
       <div className="bg-gray-800/50 p-6 rounded-lg shadow-lg w-full max-w-md">
         {messages.map((msg, index) => (
-          <p key={index} className="text-sm mb-2">{msg}</p>
+          <p key={index} className="text-sm mb-2">
+            {msg}
+          </p>
         ))}
-        {isLoading && <div className="mt-4 animate-spin rounded-full h-8 w-8 border-t-4 border-blue-500"></div>}
+        {isLoading && (
+          <div className="mt-4 animate-spin rounded-full h-8 w-8 border-t-4 border-blue-500"></div>
+        )}
         {!isLoading && (
           <button
             onClick={handleNext}
