@@ -14,6 +14,7 @@ import ResultPage from "./Pages/Result";
 import FileUploadPage from "./Pages/FileUpload";
 import Academy from "./Pages/Academy";
 import Tutorials from "./Pages/Tutorials";
+import EditingReel from './Pages/videoEditorReel'
 
 function App() {
   return (
@@ -24,10 +25,8 @@ function App() {
         <Route path="/guided-creation" element={<GuidedContentCreation />} />
         <Route path="/Avatar" element={<AvatarPage />} />
         <Route path="/video-editor" element={<VideoEditor />} />
-        <Route
-          path="/content-transformer"
-          element={<ContentTransformation />}
-        />
+        <Route path="/content-transformer" element={<ContentTransformation />}/>
+        <Route path="/video-editing" element={<EditingReel />} />
         <Route path="/file-upload" element={<FileUploadPage />} />
         <Route path="/analysis" element={<AnalysisPage />} />
         <Route path="/script" element={<ScriptPage />} />
