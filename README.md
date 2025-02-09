@@ -1,1 +1,1 @@
-# Trendz-Synapse-2024-
+# Winning Code for Trendz!!
